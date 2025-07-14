@@ -1,0 +1,17 @@
+services:
+  backend:
+    ports:
+      - "3001:3001"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rybbit-api.rule=Host(`https://msww8gs84kcccsggcc0kg408.assistkick.com`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.rybbit-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.rybbit-api.loadbalancer.server.port=3001"
+  client:
+    ports:
+      - "3002:3002"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rybbit-client.rule=Host(`iw488gg0scssoc04go0ks88s.assistkick.com`)"
+      - "traefik.http.routers.rybbit-client.tls.certresolver=letsencrypt"
+      - "traefik.http.services.rybbit-client.loadbalancer.server.port=3002"
